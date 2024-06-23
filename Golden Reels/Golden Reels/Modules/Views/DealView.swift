@@ -27,19 +27,19 @@ class DealView: UIView {
     private lazy var minusButton = UIView.button {
         self.value -= self.step
         SoundService.shared.playSound(named: .click)
-    }.setupImage(.dealMinus).size(40)
+    }.setupImage(.minus).size(50)
     
     private lazy var label = UIView.boldLabel("", fontSize: 16, textColor: .white).textAlignment(.center)
     
     private lazy var plusButton = UIView.button {
         self.value += self.step
         SoundService.shared.playSound(named: .click)
-    }.setupImage(.dealPlus).size(40)
+    }.setupImage(.plus).size(50)
     
     private lazy var maxBetButton = UIView.button {
         self.value = UserDefaults.balance.double
         self.fixDeal()
-    }.setupImage(.dealMaxBet).size(40)
+    }.setupImage(.maxBet).size(50)
     
     init(
         minValue: Double = 0,
@@ -66,18 +66,18 @@ class DealView: UIView {
         
         let stackView = UIView.horizontalStackView(views: [
             minusButton,
-            .horizontalStackView(views: [label]).image(.dealBetBg),
+            .horizontalStackView(views: [label]).image(.frame96).height(50),
             plusButton,
             .emptyWidthView(width: 5),
             maxBetButton
-        ]).spacing(5).contentInset(.init(top: 20, left: 20, bottom: 50, right: 20)).distribution(.equalSpacing).alignment(.center)
+        ]).spacing(5).distribution(.equalSpacing).alignment(.center).contentInset(.init(horizontal: 25, vertical: 0))
         
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        self.image(.dealBg)
+        self.image(.backgroundForABet)
     }
     
     required init?(coder: NSCoder) {

@@ -21,7 +21,7 @@ final class GameViewController: UIViewController {
     
     private lazy var bonusButton = UIView.button {
         self.bonusButtonTapped()
-    }.setupImage(.gameBonus)
+    }.setupImage(.bonus)
     
     private func bonusButtonTapped() {
         self.push(Bonus(completion: { image in
@@ -97,7 +97,7 @@ final class GameViewController: UIViewController {
                 self.bonusMultiplier = 1
             }
         }
-    }.setupImage(.gameSpinButton)
+    }.setupImage(.spin)
     
     private lazy var slotsView = SlotsView()
     
@@ -142,14 +142,14 @@ final class GameViewController: UIViewController {
         
         view.addSubview(dealView)
         dealView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().dividedBy(0.6)
+            make.top.equalTo(slotsView.snp.bottom).inset(-30)
             make.leading.trailing.equalToSuperview().inset(30)
             make.height.equalTo(dealView.snp.width).multipliedBy(272.0 / 797.0)
         }
         
         view.addSubview(spinButton)
         spinButton.snp.makeConstraints { make in
-            make.centerY.equalTo(dealView.snp.bottom).inset(10)
+            make.top.equalTo(dealView.snp.bottom).inset(-30)
             make.width.equalToSuperview().dividedBy(2.5)
             make.height.equalTo(spinButton.snp.width).multipliedBy(141.0 / 420.0)
             make.centerX.equalToSuperview()

@@ -85,7 +85,7 @@ class SlotsView: UIView {
                         self.selectedItems[index].image = image
                         
                         UIView.animate(withDuration: 0.3, animations: {
-                            cell.transform = .init(scaleX: 1.4, y: 1.4)
+                            cell.transform = .init(scaleX: 1.2, y: 1.2)
                         }) { _ in
                             UIView.animate(withDuration: 0.3) {
                                 cell.transform = .identity
@@ -106,7 +106,7 @@ class SlotsView: UIView {
     // MARK: Private methods
     
     private func setupView() {
-        image(.gameSpinBg)
+        image(.gameplay)
         backgroundColor(.clear)
         
         addSubview(stackView)
