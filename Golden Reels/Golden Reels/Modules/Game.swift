@@ -112,6 +112,8 @@ final class GameViewController: UIViewController {
         balanceView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.snp.topMargin).offset(15)
+            make.width.equalToSuperview().dividedBy(3)
+            make.height.equalTo(balanceView.snp.width).multipliedBy(104.0 / 321.0)
         }
         
         balanceView.addSubview(balanceLabel)
@@ -124,12 +126,16 @@ final class GameViewController: UIViewController {
         popButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.trailing.equalToSuperview().inset(15)
+            make.width.equalTo(64)
+            make.height.equalTo(popButton.snp.width).multipliedBy(129.15 / 129.36)
         }
         
         view.addSubview(settingsButton)
         settingsButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.leading.equalToSuperview().offset(15)
+            make.width.equalTo(64)
+            make.height.equalTo(settingsButton.snp.width).multipliedBy(129.15 / 129.36)
         }
         
         view.addSubview(slotsView)

@@ -44,6 +44,8 @@ class LaucnScreen: UIViewController {
         laucnScreenCenterImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-50)
+            make.width.equalToSuperview().dividedBy(1.5)
+            make.height.equalTo(laucnScreenCenterImage.snp.width).multipliedBy(529.0 / 623.0)
         }
     }
     

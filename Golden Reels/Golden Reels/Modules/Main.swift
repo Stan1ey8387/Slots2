@@ -3,31 +3,35 @@ import Darwin
 
 final class MainViewController: UIViewController {
     
-    private lazy var timeLabel = UIView.label("11:59:59".uppercased()).font(.monospacedDigitSystemFont(ofSize: 14, weight: .bold)).textColor(.white).textAlignment(.center)
+    private lazy var timeLabel = UIView.label("11:59:59".uppercased()).font(.monospacedDigitSystemFont(ofSize: 14, weight: .bold)).textColor(.init(hex: 0xF3D980)).textAlignment(.center)
     private lazy var bonusTimeImageView = UIView.imageView(.bonusTime)
     private var countdownTimer: Timer?
     private var endTime: Date?
-    private lazy var balanceLabel = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .white)
+    private lazy var balanceLabel = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .init(hex: 0xF3D980))
     private lazy var balanceView = UIView.imageView(.balanceView)
     private lazy var settingsButton = UIView.button {
         self.push(Settings())
     }.setupImage(.settingsButton)
+    private lazy var cresusImageView = UIView.imageView(.cresus1)
+    private lazy var playGameButton = UIView.button {
+        self.push(GameViewController())
+        SoundService.shared.playSound(named: .click)
+    }.setupImage(.playGame)
+    private lazy var policyButton = UIView.button {
+        //TODO: open policy
+        SoundService.shared.playSound(named: .click)
+    }.setupImage(.POLICY)
+    private lazy var quitButton = UIView.button {
+        SoundService.shared.playSound(named: .click)
+        exit(0)
+    }.setupImage(.QUIT_GAME)
     private lazy var vstack = UIView.verticalStackView(
         views: [
-            .button {
-                self.push(GameViewController())
-                SoundService.shared.playSound(named: .click)
-            }.setupImage(.playGame),
-            .button {
-                //TODO: open policy
-                SoundService.shared.playSound(named: .click)
-            }.setupImage(.POLICY),
-            .button {
-               exit(0)
-            }.setupImage(.QUIT_GAME)
+            playGameButton,
+            policyButton,
+            quitButton
         ]
-    ).spacing(5).distribution(.fillEqually)
-    private lazy var cresusImageView = UIView.imageView(.cresus1)
+    ).spacing(5).distribution(.fillEqually).alignment(.center)
     private lazy var alertView = AlertView(money: 1000) { int in
         self.saveMoney(int)
     }
@@ -58,9 +62,12 @@ final class MainViewController: UIViewController {
     private func setupView() {
         view.image(.mainViewController)
         view.addSubview(balanceView)
+        
         balanceView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.snp.topMargin).offset(15)
+            make.width.equalToSuperview().dividedBy(3)
+            make.height.equalTo(balanceView.snp.width).multipliedBy(104.0 / 321.0)
         }
         
         balanceView.addSubview(balanceLabel)
@@ -73,6 +80,8 @@ final class MainViewController: UIViewController {
         settingsButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.trailing.equalToSuperview().inset(15)
+            make.width.equalTo(64)
+            make.height.equalTo(settingsButton.snp.width).multipliedBy(129.15 / 129.36)
         }
         
         view.addSubview(bonusTimeImageView)
@@ -90,15 +99,31 @@ final class MainViewController: UIViewController {
             make.width.equalToSuperview().dividedBy(5)
         }
         
-        view.addSubview(vstack)
-        vstack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-50)
-        }
-        
         view.addSubview(cresusImageView)
         cresusImageView.snp.makeConstraints { make in
             make.leading.bottom.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.5)
+            make.height.equalToSuperview().dividedBy(1.3)
+        }
+        
+        view.addSubview(vstack)
+        vstack.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        playGameButton.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width).dividedBy(1.5)
+            make.height.equalTo(playGameButton.snp.width).multipliedBy(168.0 / 607.0)
+        }
+        
+        policyButton.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width).dividedBy(1.5)
+            make.height.equalTo(playGameButton.snp.width).multipliedBy(168.0 / 607.0)
+        }
+        
+        quitButton.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width).dividedBy(1.5)
+            make.height.equalTo(playGameButton.snp.width).multipliedBy(168.0 / 607.0)
         }
                 
         alertView.isHidden = UserDefaults.endTime != nil

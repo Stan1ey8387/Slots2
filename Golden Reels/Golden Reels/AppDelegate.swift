@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Golden Reels
-//
-//  Created by Захар Бабкин on 22.06.2024.
-//
-
 import UIKit
 
 @main

@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "bonus.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "bonus@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "bonus@3x.png",
+      "filename" : "bonusTime.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

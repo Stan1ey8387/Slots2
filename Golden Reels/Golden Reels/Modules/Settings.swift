@@ -2,7 +2,7 @@ import SnapKit
 
 final class Settings: UIViewController {
     
-    private lazy var balanceLabel = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .white)
+    private lazy var balanceLabel = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .init(hex: 0xF3D980))
     private lazy var balanceView = UIView.imageView(.balanceView)
     private lazy var popButton = UIView.button {
         self.pop()
@@ -33,6 +33,8 @@ final class Settings: UIViewController {
         balanceView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.snp.topMargin).offset(15)
+            make.width.equalToSuperview().dividedBy(3)
+            make.height.equalTo(balanceView.snp.width).multipliedBy(104.0 / 321.0)
         }
         
         balanceView.addSubview(balanceLabel)
@@ -45,12 +47,16 @@ final class Settings: UIViewController {
         popButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.trailing.equalToSuperview().inset(15)
+            make.width.equalTo(64)
+            make.height.equalTo(popButton.snp.width).multipliedBy(129.15 / 129.36)
         }
         
         view.addSubview(settingsView)
         settingsView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-50)
+            make.width.equalToSuperview().dividedBy(1.3)
+            make.height.equalTo(settingsView.snp.width).multipliedBy(616.0 / 663.0)
         }
         
         settingsView.addSubview(vstack)
@@ -62,6 +68,8 @@ final class Settings: UIViewController {
         view.addSubview(cresusImageView)
         cresusImageView.snp.makeConstraints { make in
             make.trailing.bottom.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(2.5)
+            make.height.equalToSuperview().dividedBy(1.7)
         }
     }
     

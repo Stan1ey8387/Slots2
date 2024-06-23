@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "menu.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "menu@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "menu@3x.png",
+      "filename" : "popButton.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
