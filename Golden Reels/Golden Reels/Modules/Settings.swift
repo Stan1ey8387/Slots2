@@ -16,19 +16,9 @@ final class Settings: UIViewController {
         ]
     ).spacing(15).distribution(.fillEqually)
     private lazy var cresusImageView = UIView.imageView(.queen)
-    
-//    let reelsSwitch = ReelsSwitch(isOn: false) { isOn in
-//        print("<<< isOn = \(isOn)")
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
-//        view.addSubview(reelsSwitch)
-//        reelsSwitch.snp.makeConstraints { make in
-//            make.center.equalToSuperview()
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +61,7 @@ final class Settings: UIViewController {
         settingsView.addSubview(vstack)
         vstack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(25)
+            make.centerY.equalToSuperview().offset(-10)
         }
         
         view.addSubview(cresusImageView)
@@ -85,15 +75,18 @@ final class Settings: UIViewController {
     private func musicView() -> UIView {
         var toggle = UserDefaults.isMusicEnabled
         
+        let musicView = UIView.imageView(.musicView)
         let hstack = UIView.horizontalStackView(
             views: [
-                .imageView(.musicView)
+                musicView
             ]
         ).spacing(18)
-        let button = UIView.button {
+        musicView.snp.makeConstraints { make in
+            make.width.equalTo(139)
+            make.height.equalTo(musicView.snp.width).multipliedBy(89.0 / 279.0)
+        }
+        let reelSwitch = ReelsSwitch(isOn: toggle, width: 70) { _ in
             toggle.toggle()
-            let button = hstack.subviews.last as? CustomButton
-            button?.setupImage(toggle ?  UIImage.musicButtonOn : UIImage.musicButtonOff)
             UserDefaults.isMusicEnabled = toggle
             switch toggle {
             case true:
@@ -102,27 +95,30 @@ final class Settings: UIViewController {
                 SoundService.shared.stopMusic()
             }
             SoundService.shared.playSound(named: .click)
-        }.setupImage(toggle ? UIImage.musicButtonOn : UIImage.musicButtonOff)
-        hstack.addArrangedSubview(button)
+        }
+        hstack.addArrangedSubview(reelSwitch)
         
         return hstack
     }
     
     private func soundView() -> UIView {
         var toggle = UserDefaults.isSoundsEnabled
+        let soundView = UIView.imageView(.soundView)
         let hstack = UIView.horizontalStackView(
             views: [
-                .imageView(.soundView)
+                soundView
             ]
         ).spacing(18)
-        let button = UIView.button {
+        soundView.snp.makeConstraints { make in
+            make.width.equalTo(139)
+            make.height.equalTo(soundView.snp.width).multipliedBy(89.0 / 279.0)
+        }
+        let reelSwitch = ReelsSwitch(isOn: toggle, width: 70) { _ in
             toggle.toggle()
-            let button = hstack.subviews.last as? CustomButton
-            button?.setupImage(toggle ? UIImage.soundButtonOn : UIImage.soundButtonOff)
             UserDefaults.isSoundsEnabled = toggle
             SoundService.shared.playSound(named: .click)
-        }.setupImage(toggle ? UIImage.soundButtonOn : UIImage.soundButtonOff)
-        hstack.addArrangedSubview(button)
+        }
+        hstack.addArrangedSubview(reelSwitch)
         
         return hstack
     }

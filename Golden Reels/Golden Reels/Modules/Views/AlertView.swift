@@ -11,16 +11,17 @@ final class AlertView: UIView {
         let imageView = UIView.imageView(.alertViewCouins)
         addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-100)
+            make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
-            make.height.equalTo(imageView.snp.width).multipliedBy(283.0 / 545.0)
+            make.height.equalTo(imageView.snp.width).multipliedBy(168.0 / 512.0)
         }
         
         let label = UIView.boldLabel("\(money > 0 ? "+" : "") \(money)", fontSize: 23, textColor: .white)
         imageView.addSubview(label)
         label.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(15)
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview().offset(15)
         }
         
         let button = UIView.button {
@@ -32,7 +33,7 @@ final class AlertView: UIView {
         button.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(imageView.snp.bottom).offset(10)
-            make.width.equalToSuperview().dividedBy(2.2)
+            make.width.equalToSuperview().dividedBy(1.5)
             make.height.equalTo(imageView.snp.width).multipliedBy(141.0 / 420.0)
         }
         

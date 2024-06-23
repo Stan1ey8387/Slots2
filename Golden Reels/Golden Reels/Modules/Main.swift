@@ -32,7 +32,7 @@ final class MainViewController: UIViewController {
             quitButton
         ]
     ).spacing(5).distribution(.fillEqually).alignment(.center)
-    private lazy var alertView = AlertView(money: 1000) { int in
+    private lazy var alertView = AlertView(money: 3000) { int in
         self.saveMoney(int)
     }
     
