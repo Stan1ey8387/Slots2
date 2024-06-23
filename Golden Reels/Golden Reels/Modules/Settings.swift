@@ -17,9 +17,18 @@ final class Settings: UIViewController {
     ).spacing(15).distribution(.fillEqually)
     private lazy var cresusImageView = UIView.imageView(.queen)
     
+//    let reelsSwitch = ReelsSwitch(isOn: false) { isOn in
+//        print("<<< isOn = \(isOn)")
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
+//        view.addSubview(reelsSwitch)
+//        reelsSwitch.snp.makeConstraints { make in
+//            make.center.equalToSuperview()
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
