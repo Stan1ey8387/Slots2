@@ -52,6 +52,21 @@
 		362F5ACC2C26F40400BF42AE /* DrawableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362F5AA12C26F40400BF42AE /* DrawableImageView.swift */; };
 		362F5ACD2C26F40400BF42AE /* PlusMinusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362F5AA22C26F40400BF42AE /* PlusMinusView.swift */; };
 		362F5ACE2C26F40400BF42AE /* SimpleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362F5AA32C26F40400BF42AE /* SimpleProgressView.swift */; };
+		3692BAFB2C28216A0088DE42 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAE62C28216A0088DE42 /* UserDefaults.swift */; };
+		3692BAFC2C28216A0088DE42 /* SlotsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAE82C28216A0088DE42 /* SlotsItem.swift */; };
+		3692BAFD2C28216A0088DE42 /* SlotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAE92C28216A0088DE42 /* SlotsView.swift */; };
+		3692BAFE2C28216A0088DE42 /* SlotsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAEA2C28216A0088DE42 /* SlotsViewCell.swift */; };
+		3692BAFF2C28216A0088DE42 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAEC2C28216A0088DE42 /* AlertView.swift */; };
+		3692BB002C28216A0088DE42 /* DealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAED2C28216A0088DE42 /* DealView.swift */; };
+		3692BB012C28216A0088DE42 /* Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAEF2C28216A0088DE42 /* Bonus.swift */; };
+		3692BB022C28216A0088DE42 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAF02C28216A0088DE42 /* Game.swift */; };
+		3692BB032C28216A0088DE42 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAF12C28216A0088DE42 /* Main.swift */; };
+		3692BB042C28216A0088DE42 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAF22C28216A0088DE42 /* Settings.swift */; };
+		3692BB052C28216A0088DE42 /* background music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3692BAF42C28216A0088DE42 /* background music.mp3 */; };
+		3692BB062C28216A0088DE42 /* click sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3692BAF52C28216A0088DE42 /* click sound.mp3 */; };
+		3692BB072C28216A0088DE42 /* spin slot sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3692BAF62C28216A0088DE42 /* spin slot sound.mp3 */; };
+		3692BB082C28216A0088DE42 /* win sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3692BAF72C28216A0088DE42 /* win sound.mp3 */; };
+		3692BB092C28216A0088DE42 /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAF92C28216A0088DE42 /* SoundService.swift */; };
 		BBEC3DA6A5D983C60F67C00F /* Pods_Golden_Reels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819AD89C6DEB993D52D25736 /* Pods_Golden_Reels.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +119,21 @@
 		362F5AA12C26F40400BF42AE /* DrawableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableImageView.swift; sourceTree = "<group>"; };
 		362F5AA22C26F40400BF42AE /* PlusMinusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlusMinusView.swift; sourceTree = "<group>"; };
 		362F5AA32C26F40400BF42AE /* SimpleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleProgressView.swift; sourceTree = "<group>"; };
+		3692BAE62C28216A0088DE42 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		3692BAE82C28216A0088DE42 /* SlotsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsItem.swift; sourceTree = "<group>"; };
+		3692BAE92C28216A0088DE42 /* SlotsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsView.swift; sourceTree = "<group>"; };
+		3692BAEA2C28216A0088DE42 /* SlotsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotsViewCell.swift; sourceTree = "<group>"; };
+		3692BAEC2C28216A0088DE42 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		3692BAED2C28216A0088DE42 /* DealView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DealView.swift; sourceTree = "<group>"; };
+		3692BAEF2C28216A0088DE42 /* Bonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bonus.swift; sourceTree = "<group>"; };
+		3692BAF02C28216A0088DE42 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		3692BAF12C28216A0088DE42 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		3692BAF22C28216A0088DE42 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3692BAF42C28216A0088DE42 /* background music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "background music.mp3"; sourceTree = "<group>"; };
+		3692BAF52C28216A0088DE42 /* click sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "click sound.mp3"; sourceTree = "<group>"; };
+		3692BAF62C28216A0088DE42 /* spin slot sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "spin slot sound.mp3"; sourceTree = "<group>"; };
+		3692BAF72C28216A0088DE42 /* win sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "win sound.mp3"; sourceTree = "<group>"; };
+		3692BAF92C28216A0088DE42 /* SoundService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		819AD89C6DEB993D52D25736 /* Pods_Golden_Reels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golden_Reels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0EBFFF5D2E91B02A5582E2 /* Pods-Golden Reels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golden Reels.release.xcconfig"; path = "Target Support Files/Pods-Golden Reels/Pods-Golden Reels.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +171,9 @@
 		362F5A602C26F3CA00BF42AE /* Golden Reels */ = {
 			isa = PBXGroup;
 			children = (
+				3692BAF32C28216A0088DE42 /* Modules */,
+				3692BAE72C28216A0088DE42 /* Services */,
+				3692BAFA2C28216A0088DE42 /* SoundService */,
 				362F5AA52C26F40400BF42AE /* Common */,
 				362F5A612C26F3CA00BF42AE /* AppDelegate.swift */,
 				362F5A632C26F3CA00BF42AE /* SceneDelegate.swift */,
@@ -255,6 +288,66 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		3692BAE72C28216A0088DE42 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3692BAE62C28216A0088DE42 /* UserDefaults.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3692BAEB2C28216A0088DE42 /* Slots */ = {
+			isa = PBXGroup;
+			children = (
+				3692BAE82C28216A0088DE42 /* SlotsItem.swift */,
+				3692BAE92C28216A0088DE42 /* SlotsView.swift */,
+				3692BAEA2C28216A0088DE42 /* SlotsViewCell.swift */,
+			);
+			path = Slots;
+			sourceTree = "<group>";
+		};
+		3692BAEE2C28216A0088DE42 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3692BAEB2C28216A0088DE42 /* Slots */,
+				3692BAEC2C28216A0088DE42 /* AlertView.swift */,
+				3692BAED2C28216A0088DE42 /* DealView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3692BAF32C28216A0088DE42 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				3692BAEE2C28216A0088DE42 /* Views */,
+				3692BAEF2C28216A0088DE42 /* Bonus.swift */,
+				3692BAF02C28216A0088DE42 /* Game.swift */,
+				3692BAF12C28216A0088DE42 /* Main.swift */,
+				3692BAF22C28216A0088DE42 /* Settings.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		3692BAF82C28216A0088DE42 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3692BAF42C28216A0088DE42 /* background music.mp3 */,
+				3692BAF52C28216A0088DE42 /* click sound.mp3 */,
+				3692BAF62C28216A0088DE42 /* spin slot sound.mp3 */,
+				3692BAF72C28216A0088DE42 /* win sound.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		3692BAFA2C28216A0088DE42 /* SoundService */ = {
+			isa = PBXGroup;
+			children = (
+				3692BAF82C28216A0088DE42 /* Sounds */,
+				3692BAF92C28216A0088DE42 /* SoundService.swift */,
+			);
+			path = SoundService;
+			sourceTree = "<group>";
+		};
 		660620B9011A5D2980CF4CD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,7 +362,6 @@
 				2BA93F3C01BB76F6D9024774 /* Pods-Golden Reels.debug.xcconfig */,
 				FA0EBFFF5D2E91B02A5582E2 /* Pods-Golden Reels.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -333,8 +425,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3692BB082C28216A0088DE42 /* win sound.mp3 in Resources */,
+				3692BB062C28216A0088DE42 /* click sound.mp3 in Resources */,
+				3692BB052C28216A0088DE42 /* background music.mp3 in Resources */,
 				362F5A6B2C26F3CC00BF42AE /* Assets.xcassets in Resources */,
 				362F5A6E2C26F3CC00BF42AE /* Base in Resources */,
+				3692BB072C28216A0088DE42 /* spin slot sound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,8 +494,10 @@
 				362F5AA82C26F40400BF42AE /* Date.swift in Sources */,
 				362F5AA72C26F40400BF42AE /* Color.swift in Sources */,
 				362F5ABD2C26F40400BF42AE /* DatePicker.swift in Sources */,
+				3692BB042C28216A0088DE42 /* Settings.swift in Sources */,
 				362F5AC82C26F40400BF42AE /* AddTextField.swift in Sources */,
 				362F5ABC2C26F40400BF42AE /* CustomSwitch.swift in Sources */,
+				3692BB022C28216A0088DE42 /* Game.swift in Sources */,
 				362F5AB02C26F40400BF42AE /* UIWindow.swift in Sources */,
 				362F5AC22C26F40400BF42AE /* TextView.swift in Sources */,
 				362F5AAA2C26F40400BF42AE /* Float.swift in Sources */,
@@ -412,18 +510,27 @@
 				362F5AB52C26F40400BF42AE /* OnboardingViewController.swift in Sources */,
 				362F5AB42C26F40400BF42AE /* OnboardingItemView.swift in Sources */,
 				362F5AC52C26F40400BF42AE /* FavoriteService.swift in Sources */,
+				3692BAFE2C28216A0088DE42 /* SlotsViewCell.swift in Sources */,
 				362F5ACA2C26F40400BF42AE /* ContentView.swift in Sources */,
 				362F5AB12C26F40400BF42AE /* View+Gradient.swift in Sources */,
 				362F5AAB2C26F40400BF42AE /* ImageView+.swift in Sources */,
+				3692BB032C28216A0088DE42 /* Main.swift in Sources */,
+				3692BAFF2C28216A0088DE42 /* AlertView.swift in Sources */,
+				3692BAFD2C28216A0088DE42 /* SlotsView.swift in Sources */,
+				3692BB012C28216A0088DE42 /* Bonus.swift in Sources */,
 				362F5AB92C26F40400BF42AE /* LaucnScreen.swift in Sources */,
 				362F5A622C26F3CA00BF42AE /* AppDelegate.swift in Sources */,
 				362F5AB72C26F40400BF42AE /* TabBarController.swift in Sources */,
 				362F5AAF2C26F40400BF42AE /* UIViewController+BackButton.swift in Sources */,
 				362F5AB22C26F40400BF42AE /* View+Taps.swift in Sources */,
 				362F5ABB2C26F40400BF42AE /* Button.swift in Sources */,
+				3692BB002C28216A0088DE42 /* DealView.swift in Sources */,
 				362F5AC92C26F40400BF42AE /* CircleProgressView.swift in Sources */,
+				3692BB092C28216A0088DE42 /* SoundService.swift in Sources */,
 				362F5AAD2C26F40400BF42AE /* Label+Colors.swift in Sources */,
+				3692BAFB2C28216A0088DE42 /* UserDefaults.swift in Sources */,
 				362F5AAC2C26F40400BF42AE /* Int.swift in Sources */,
+				3692BAFC2C28216A0088DE42 /* SlotsItem.swift in Sources */,
 				362F5ABE2C26F40400BF42AE /* ImageView.swift in Sources */,
 				362F5AA92C26F40400BF42AE /* Double.swift in Sources */,
 				362F5ACC2C26F40400BF42AE /* DrawableImageView.swift in Sources */,

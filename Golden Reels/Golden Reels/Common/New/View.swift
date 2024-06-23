@@ -1,4 +1,4 @@
-import UIKit
+import SnapKit
 
 extension UIView {
     static func empty() -> UIView {
@@ -264,6 +264,12 @@ extension UIView {
     @discardableResult
     func setTag(_ value: Int) -> Self {
         self.tag = value
+        return self
+    }
+    
+    @discardableResult
+    func makeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> UIView {
+        self.snp.makeConstraints(closure)
         return self
     }
 }
