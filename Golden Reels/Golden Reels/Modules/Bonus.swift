@@ -15,8 +15,9 @@ final class Bonus: UIViewController {
         SoundService.shared.playSound(named: .click)
     }.setupImage(.settingsButton)
     private lazy var cresusImageView = UIView.imageView(.queen)
+    
     private lazy var bonusView = UIView.imageView(.bonusView).isUserInteractionEnabled(true)
-    private var views: [UIView] = []
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -52,12 +53,11 @@ final class Bonus: UIViewController {
     }
     
     private func bonusButton(_ image: UIImage, tap: @escaping (() -> ())) -> UIView {
-        let stack = UIView.centerStackView(views: [])
         let buton = UIView.button {
             tap()
             self.pop()
         }.setupImage(image)
-        stack.addArrangedSubview(buton)
+        let stack = UIView.centerStackView(views: [buton])
         buton.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(2)
             make.height.equalTo(buton.snp.width).multipliedBy(109.0 / 341.0)
@@ -69,8 +69,8 @@ final class Bonus: UIViewController {
     private func setupView() {
         view.image(.mainViewController)
         
-        views.append(
-            .verticalStackView(
+        let verticalStackViews = [
+            UIView.verticalStackView(
                 views: [
                     bonusButton(.goldx10, tap: {
                         self.completion(.goldx10)
@@ -80,13 +80,9 @@ final class Bonus: UIViewController {
                     }),
                     bonusButton(.bluex50, tap: {
                         self.completion(.bluex50)
-                    }),
-                    .empty()
+                    })
                 ]
-            ).spacing(10)
-        )
-        
-        views.append(
+            ),
             .verticalStackView(
                 views: [
                     bonusButton(.purplex10, tap: {
@@ -97,13 +93,9 @@ final class Bonus: UIViewController {
                     }),
                     bonusButton(.lightgreenx50, tap: {
                         self.completion(.lightgreenx50)
-                    }),
-                    .empty()
+                    })
                 ]
-            ).spacing(10)
-        )
-        
-        views.append(
+            ),
             .verticalStackView(
                 views: [
                     bonusButton(.ringx10, tap: {
@@ -114,11 +106,10 @@ final class Bonus: UIViewController {
                     }),
                     bonusButton(.cupx50, tap: {
                         self.completion(.cupx50)
-                    }),
-                    .empty()
+                    })
                 ]
-            ).spacing(10)
-        )
+            )
+        ]
         
         view.addSubview(balanceView)
         balanceView.snp.makeConstraints { make in
@@ -160,7 +151,8 @@ final class Bonus: UIViewController {
         
         bonusView.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.equalToSuperview()
             make.bottom.equalToSuperview().inset(20)
         }
         
@@ -177,18 +169,15 @@ final class Bonus: UIViewController {
             make.height.equalToSuperview().dividedBy(1.7)
         }
         
-        views.enumerated().forEach { index, view in
-            self.scrollView.addSubview(view)
-            view.snp.makeConstraints { make in
-                make.width.height.equalToSuperview()
-                make.top.equalToSuperview().offset(60)
-                make.bottom.equalToSuperview()
-                make.leading.equalToSuperview().inset(CGFloat(index) * bonusView.bounds.width / 5)
-                
-                if index == views.count - 1 {
-                    make.trailing.equalToSuperview()
-                }
-            }
+        let horizontalItemsView = UIView.horizontalStackView(views: verticalStackViews).distribution(.fillEqually).alignment(.center)
+        scrollView.addSubview(horizontalItemsView)
+        horizontalItemsView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(verticalStackViews.count)
+        }
+        verticalStackViews.enumerated().forEach { index, view in
+            view.spacing(10)
         }
     }
 }
