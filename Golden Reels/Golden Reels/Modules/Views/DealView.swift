@@ -27,19 +27,19 @@ class DealView: UIView {
     private lazy var minusButton = UIView.button {
         self.value -= self.step
         SoundService.shared.playSound(named: .click)
-    }.setupImage(.minus).size(50)
+    }.setupImage(.minus).size(45)
     
     private lazy var label = UIView.boldLabel("", fontSize: 16, textColor: .white).textAlignment(.center)
     
     private lazy var plusButton = UIView.button {
         self.value += self.step
         SoundService.shared.playSound(named: .click)
-    }.setupImage(.plus).size(50)
+    }.setupImage(.plus).size(45)
     
     private lazy var maxBetButton = UIView.button {
         self.value = UserDefaults.balance.double
         self.fixDeal()
-    }.setupImage(.maxBet).size(50)
+    }.setupImage(.maxBet).size(45)
     
     init(
         minValue: Double = 0,
@@ -66,7 +66,7 @@ class DealView: UIView {
         
         let stackView = UIView.horizontalStackView(views: [
             minusButton,
-            .horizontalStackView(views: [label]).image(.frame96).height(50),
+            .horizontalStackView(views: [label]).image(.frame96).height(45),
             plusButton,
             .emptyWidthView(width: 5),
             maxBetButton

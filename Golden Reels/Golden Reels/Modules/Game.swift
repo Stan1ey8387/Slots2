@@ -25,19 +25,8 @@ final class GameViewController: UIViewController {
     
     private func bonusButtonTapped() {
         self.push(Bonus(completion: { model in
-            // TODO
-//            if image == UIImage.strawberry {
-//                self.bonusImage = .item6
-//                self.bonusMultiplier = 25
-//            } else if image == UIImage.lemon {
-//                self.bonusImage = .item7
-//                self.bonusMultiplier = 50
-//            } else if image == UIImage.grape {
-//                self.bonusImage = .item5
-//                self.bonusMultiplier = 10
-//            }
-            
-            print("<<< image = \(model)")
+            self.bonusImage = model.image
+            self.bonusMultiplier = model.multipliedBy
             self.bonusButton.setupImage(model.image)
         }))
         SoundService.shared.playSound(named: .click)
@@ -60,32 +49,32 @@ final class GameViewController: UIViewController {
             if resultItem.images.contains(where: { $0 == self.bonusImage }) {
                 multiplier *= self.bonusMultiplier
             }
-            // TODO
-//            if multiplier == 0  {
-//                if UserDefaults.balance.double > self.currentDeal {
-//                    UserDefaults.balance -= Int(self.currentDeal)
-//                } else {
-//                    UserDefaults.balance = Int(self.dealView.minValue)
-//                }
-//                print("<<< lose = \(self.currentDeal)")
-//                let alertView = AlertView(money: -Int(self.currentDeal)) { _ in }
-//                self.view.addSubview(alertView)
-//                alertView.makeConstraints { make in
-//                    make.edges.equalToSuperview()
-//                }
-//                
-//            } else {
-//                let winValue = Int(self.currentDeal) * multiplier
-//                print("<<< win = \(winValue)")
-//                UserDefaults.balance += winValue
-//                
-//                
-//                let alertView = AlertView(money: winValue) { _ in }
-//                self.view.addSubview(alertView)
-//                alertView.makeConstraints { make in
-//                    make.edges.equalToSuperview()
-//                }
-//            }
+            
+            if multiplier == 0  {
+                if UserDefaults.balance.double > self.currentDeal {
+                    UserDefaults.balance -= Int(self.currentDeal)
+                } else {
+                    UserDefaults.balance = Int(self.dealView.minValue)
+                }
+                print("<<< lose = \(self.currentDeal)")
+                let alertView = AlertView(money: -Int(self.currentDeal)) { _ in }
+                self.view.addSubview(alertView)
+                alertView.makeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
+                
+            } else {
+                let winValue = Int(self.currentDeal) * multiplier
+                print("<<< win = \(winValue)")
+                UserDefaults.balance += winValue
+                
+                
+                let alertView = AlertView(money: winValue) { _ in }
+                self.view.addSubview(alertView)
+                alertView.makeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
+            }
             
             self.balanceLabel.text = UserDefaults.balance.string
             self.dealView.fixDeal()
@@ -107,7 +96,7 @@ final class GameViewController: UIViewController {
     }
     
     private func setupView() {
-        view.image(.gameViewController)
+        view.image(.mainViewController)
         view.addSubview(balanceView)
         balanceView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -142,22 +131,30 @@ final class GameViewController: UIViewController {
         slotsView.snp.makeConstraints { make in
             make.centerY.equalToSuperview().multipliedBy(0.85)
             make.centerX.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(30)
             make.height.equalTo(slotsView.snp.width)
+        }
+        
+        let godImageView = UIView.imageView(.cresus1)
+        view.addSubview(godImageView)
+        godImageView.snp.makeConstraints { make in
+            make.bottom.leading.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(2.6)
+            make.height.equalTo(godImageView.snp.width).multipliedBy(882.0 / 344.0)
         }
         
         view.addSubview(dealView)
         dealView.snp.makeConstraints { make in
             make.top.equalTo(slotsView.snp.bottom).inset(-30)
             make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(dealView.snp.width).multipliedBy(272.0 / 797.0)
+            make.height.equalTo(dealView.snp.width).multipliedBy(215.0 / 725.0)
         }
         
         view.addSubview(spinButton)
         spinButton.snp.makeConstraints { make in
             make.top.equalTo(dealView.snp.bottom).inset(-30)
-            make.width.equalToSuperview().dividedBy(2.5)
-            make.height.equalTo(spinButton.snp.width).multipliedBy(141.0 / 420.0)
+            make.width.equalToSuperview().dividedBy(4)
+            make.height.equalTo(spinButton.snp.width).multipliedBy(173.0 / 219)
             make.centerX.equalToSuperview()
         }
         

@@ -55,7 +55,7 @@ class ReelsSwitch: UIView {
     @objc private func didTap() {
         isOn.toggle()
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.36) {
             if self.isOn {
                 self.backgroundImageView.image = .switchOn
                 self.thumbLeftConstraint?.isActive = false
