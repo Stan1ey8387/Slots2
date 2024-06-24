@@ -1,8 +1,13 @@
 import SnapKit
 
+struct BonusModel {
+    let image: UIImage
+    let multipliedBy: Int
+}
+
 final class Bonus: UIViewController {
     
-    private let completion: ((UIImage) -> ())
+    private let completion: ((BonusModel) -> ())
     
     private lazy var balanceLabel = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .white)
     private lazy var balanceView = UIView.imageView(.balanceView)
@@ -33,7 +38,7 @@ final class Bonus: UIViewController {
         )
     )
     
-    init(completion: @escaping ((UIImage) -> ())) {
+    init(completion: @escaping ((BonusModel) -> ())) {
         self.completion = completion
         super.init(nibName: nil, bundle: nil)
     }
@@ -73,39 +78,39 @@ final class Bonus: UIViewController {
             UIView.verticalStackView(
                 views: [
                     bonusButton(.goldx10, tap: {
-                        self.completion(.goldx10)
+                        self.completion(.init(image: .goldx10, multipliedBy: 10))
                     }),
                     bonusButton(.redx25, tap: {
-                        self.completion(.redx25)
+                        self.completion(.init(image: .redx25, multipliedBy: 25))
                     }),
                     bonusButton(.bluex50, tap: {
-                        self.completion(.bluex50)
+                        self.completion(.init(image: .bluex50, multipliedBy: 50))
                     })
                 ]
             ),
             .verticalStackView(
                 views: [
                     bonusButton(.purplex10, tap: {
-                        self.completion(.purplex10)
+                        self.completion(.init(image: .purplex10, multipliedBy: 10))
                     }),
                     bonusButton(.greenx25, tap: {
-                        self.completion(.greenx25)
+                        self.completion(.init(image: .greenx25, multipliedBy: 25))
                     }),
                     bonusButton(.lightgreenx50, tap: {
-                        self.completion(.lightgreenx50)
+                        self.completion(.init(image: .lightgreenx50, multipliedBy: 50))
                     })
                 ]
             ),
             .verticalStackView(
                 views: [
                     bonusButton(.ringx10, tap: {
-                        self.completion(.ringx10)
+                        self.completion(.init(image: .ringx10, multipliedBy: 10))
                     }),
                     bonusButton(.crownx25, tap: {
-                        self.completion(.crownx25)
+                        self.completion(.init(image: .crownx25, multipliedBy: 25))
                     }),
                     bonusButton(.cupx50, tap: {
-                        self.completion(.cupx50)
+                        self.completion(.init(image: .cupx50, multipliedBy: 50))
                     })
                 ]
             )

@@ -24,7 +24,7 @@ final class GameViewController: UIViewController {
     }.setupImage(.bonus)
     
     private func bonusButtonTapped() {
-        self.push(Bonus(completion: { image in
+        self.push(Bonus(completion: { model in
             // TODO
 //            if image == UIImage.strawberry {
 //                self.bonusImage = .item6
@@ -37,8 +37,8 @@ final class GameViewController: UIViewController {
 //                self.bonusMultiplier = 10
 //            }
             
-            print("<<< image = \(image)")
-            self.bonusButton.setupImage(image)
+            print("<<< image = \(model)")
+            self.bonusButton.setupImage(model.image)
         }))
         SoundService.shared.playSound(named: .click)
     }
