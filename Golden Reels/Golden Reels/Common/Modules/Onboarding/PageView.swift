@@ -19,7 +19,7 @@ class PageView: UIView {
     
     // Setup
     static let selectedColor: UIColor = .init(hex: 0xD9D9D9)
-    static let selectedSize: CGSize = .init(width: 28, height: 8)
+    static let selectedSize: CGSize = .init(width: 8, height: 8)
     static let unselectedColor: UIColor = .init(hex: 0xFF6086)
     static let unselectedSize: CGSize = .init(width: 8, height: 8)
     

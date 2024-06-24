@@ -25,17 +25,17 @@ final class GameViewController: UIViewController {
     
     private func bonusButtonTapped() {
         self.push(Bonus(completion: { image in
-            
-            if image == UIImage.strawberry {
-                self.bonusImage = .item6
-                self.bonusMultiplier = 25
-            } else if image == UIImage.lemon {
-                self.bonusImage = .item7
-                self.bonusMultiplier = 50
-            } else if image == UIImage.grape {
-                self.bonusImage = .item5
-                self.bonusMultiplier = 10
-            }
+            // TODO
+//            if image == UIImage.strawberry {
+//                self.bonusImage = .item6
+//                self.bonusMultiplier = 25
+//            } else if image == UIImage.lemon {
+//                self.bonusImage = .item7
+//                self.bonusMultiplier = 50
+//            } else if image == UIImage.grape {
+//                self.bonusImage = .item5
+//                self.bonusMultiplier = 10
+//            }
             
             print("<<< image = \(image)")
             self.bonusButton.setupImage(image)
