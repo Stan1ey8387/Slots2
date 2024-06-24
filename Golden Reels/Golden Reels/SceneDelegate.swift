@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.initTheme()
         let vc = LaucnScreen { [weak self] in
             guard let self = self else { return }
-            self.window?.rootViewController = UINavigationController(rootViewController: MainViewController())
+            self.window?.rootViewController = UINavigationController(rootViewController: ОсновнойКонтроллер())
         }
         
         window?.rootViewController = vc

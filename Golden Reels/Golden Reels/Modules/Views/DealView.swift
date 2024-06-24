@@ -1,79 +1,79 @@
 import UIKit
 
-class DealView: UIView {
-    private let valueChangeHandler: (Double) -> Void
-    let minValue: Double
-    private let step: Double
+class СделкаView: UIView {
+    private let обработчикИзмененияЗначения: (Double) -> Void
+    let минимальноеЗначение: Double
+    private let шаг: Double
     
-    var value: Double {
+    var значение: Double {
         didSet {
-            label.text = Int(value).string
-            valueChangeHandler(value.rounded(toPlaces: 1))
+            метка.text = Int(значение).string
+            обработчикИзмененияЗначения(значение.rounded(toPlaces: 1))
             
-            if value <= minValue {
-                minusButton.isEnabled(false)
+            if значение <= минимальноеЗначение {
+                минусКнопка.isEnabled(false)
             } else {
-                minusButton.isEnabled(true)
+                минусКнопка.isEnabled(true)
             }
             
-            if value >= UserDefaults.balance.double {
-                plusButton.isEnabled(false)
+            if значение >= UserDefaults.balance.double {
+                плюсКнопка.isEnabled(false)
             } else {
-                plusButton.isEnabled(true)
+                плюсКнопка.isEnabled(true)
             }
         }
     }
     
-    private lazy var minusButton = UIView.button {
-        self.value -= self.step
-        SoundService.shared.playSound(named: .click)
+    private lazy var минусКнопка = UIView.button {
+        self.значение -= self.шаг
+        СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
     }.setupImage(.minus).size(45)
     
-    private lazy var label = UIView.boldLabel("", fontSize: 16, textColor: .white).textAlignment(.center)
+    private lazy var метка = UIView.boldLabel("", fontSize: 16, textColor: .white).textAlignment(.center)
     
-    private lazy var plusButton = UIView.button {
-        self.value += self.step
-        SoundService.shared.playSound(named: .click)
+    private lazy var плюсКнопка = UIView.button {
+        self.значение += self.шаг
+        СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
     }.setupImage(.plus).size(45)
     
-    private lazy var maxBetButton = UIView.button {
-        self.value = UserDefaults.balance.double
-        self.fixDeal()
+    private lazy var максимальнаяСтавкаКнопка = UIView.button {
+        self.значение = UserDefaults.balance.double
+        self.зафиксироватьСделку()
     }.setupImage(.maxBet).size(45)
     
     init(
-        minValue: Double = 0,
-        value: Double,
-        step: Double = 10,
-        valueChangeHandler: @escaping (Double) -> Void
+        минимальноеЗначение: Double = 0,
+        значение: Double,
+        шаг: Double = 10,
+        обработчикИзмененияЗначения: @escaping (Double) -> Void
     ) {
-        self.minValue = minValue
-        self.value = value
-        self.step = step
-        self.valueChangeHandler = valueChangeHandler
+        self.минимальноеЗначение = минимальноеЗначение
+        self.значение = значение
+        self.шаг = шаг
+        self.обработчикИзмененияЗначения = обработчикИзмененияЗначения
         super.init(frame: .zero)
         
-        if value <= minValue {
-            self.value = minValue
-            minusButton.isEnabled(false)
+        if значение <= минимальноеЗначение {
+            self.значение = минимальноеЗначение
+            минусКнопка.isEnabled(false)
         }
         
-        if value == UserDefaults.balance.double {
-            plusButton.isEnabled(false)
+        if значение == UserDefaults.balance.double {
+            плюсКнопка.isEnabled(false)
         }
         
-        label.text = Int(self.value).string
+        метка.text = Int(self.значение).string
         
-        let stackView = UIView.horizontalStackView(views: [
-            minusButton,
-            .horizontalStackView(views: [label]).image(.frame96).height(45),
-            plusButton,
+        let стекВид = UIView.horizontalStackView(views: [
+            минусКнопка,
+            .horizontalStackView(views: [метка]).image(.frame96).height(45),
+            плюсКнопка,
             .emptyWidthView(width: 5),
-            maxBetButton
+            максимальнаяСтавкаКнопка
         ]).spacing(5).distribution(.equalSpacing).alignment(.center).contentInset(.init(horizontal: 25, vertical: 0))
         
-        addSubview(stackView)
-        stackView.snp.makeConstraints { make in
+        addSubview(стекВид)
+        стекВид.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -84,15 +84,15 @@ class DealView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func fixDeal() {
-        if value >= UserDefaults.balance.double {
-            value = UserDefaults.balance.double
+    func зафиксироватьСделку() {
+        if значение >= UserDefaults.balance.double {
+            значение = UserDefaults.balance.double
         }
         
-        if value < minValue {
-            value = minValue
+        if значение < минимальноеЗначение {
+            значение = минимальноеЗначение
         }
         
-        value += 0
+        значение += 0
     }
 }

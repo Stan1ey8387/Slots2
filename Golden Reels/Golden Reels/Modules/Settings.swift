@@ -1,122 +1,123 @@
 import SnapKit
 
-final class Settings: UIViewController {
+final class Настройки: UIViewController {
     
-    private lazy var balanceLabel = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .init(hex: 0xF3D980))
-    private lazy var balanceView = UIView.imageView(.balanceView)
-    private lazy var popButton = UIView.button {
+    private lazy var меткаБаланса = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .init(hex: 0xF3D980))
+    private lazy var видБаланса = UIView.imageView(.balanceView)
+    private lazy var кнопкаНазад = UIView.button {
         self.pop()
-        SoundService.shared.playSound(named: .click)
+        СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
     }.setupImage(.popButton)
-    private lazy var settingsView = UIView.imageView(.settingsView).isUserInteractionEnabled(true)
+    private lazy var видНастроек = UIView.imageView(.settingsView).isUserInteractionEnabled(true)
     private lazy var vstack = UIView.verticalStackView(
         views: [
-            musicView(),
-            soundView()
+            музыкаВид(),
+            звукВид()
         ]
     ).spacing(15).distribution(.fillEqually)
-    private lazy var cresusImageView = UIView.imageView(.queen)
+    private lazy var изображениеКресуса = UIView.imageView(.queen)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        настроитьВид()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        balanceLabel.text = UserDefaults.balance.string
+        меткаБаланса.text = UserDefaults.balance.string
     }
     
-    private func setupView() {
+    private func настроитьВид() {
         view.image(.mainViewController)
-        view.addSubview(balanceView)
-        balanceView.snp.makeConstraints { make in
+        view.addSubview(видБаланса)
+        видБаланса.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.snp.topMargin).offset(15)
             make.width.equalToSuperview().dividedBy(3)
-            make.height.equalTo(balanceView.snp.width).multipliedBy(104.0 / 321.0)
+            make.height.equalTo(видБаланса.snp.width).multipliedBy(104.0 / 321.0)
         }
         
-        balanceView.addSubview(balanceLabel)
-        balanceLabel.snp.makeConstraints { make in
+        видБаланса.addSubview(меткаБаланса)
+        меткаБаланса.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview().offset(5)
         }
         
-        view.addSubview(popButton)
-        popButton.snp.makeConstraints { make in
+        view.addSubview(кнопкаНазад)
+        кнопкаНазад.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.trailing.equalToSuperview().inset(15)
             make.width.equalTo(64)
-            make.height.equalTo(popButton.snp.width).multipliedBy(129.15 / 129.36)
+            make.height.equalTo(кнопкаНазад.snp.width).multipliedBy(129.15 / 129.36)
         }
         
-        view.addSubview(settingsView)
-        settingsView.snp.makeConstraints { make in
+        view.addSubview(видНастроек)
+        видНастроек.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-50)
             make.width.equalToSuperview().dividedBy(1.3)
-            make.height.equalTo(settingsView.snp.width).multipliedBy(616.0 / 663.0)
+            make.height.equalTo(видНастроек.snp.width).multipliedBy(616.0 / 663.0)
         }
         
-        settingsView.addSubview(vstack)
+        видНастроек.addSubview(vstack)
         vstack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-10)
         }
         
-        view.addSubview(cresusImageView)
-        cresusImageView.snp.makeConstraints { make in
+        view.addSubview(изображениеКресуса)
+        изображениеКресуса.snp.makeConstraints { make in
             make.trailing.bottom.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2.5)
             make.height.equalToSuperview().dividedBy(1.7)
         }
     }
     
-    private func musicView() -> UIView {
-        var toggle = UserDefaults.isMusicEnabled
+    private func музыкаВид() -> UIView {
+        var переключатель = UserDefaults.isMusicEnabled
         
-        let musicView = UIView.imageView(.musicView)
+        let музыкаВид = UIView.imageView(.musicView)
         let hstack = UIView.horizontalStackView(
             views: [
-                musicView
+                музыкаВид
             ]
         ).spacing(18)
-        musicView.snp.makeConstraints { make in
+        музыкаВид.snp.makeConstraints { make in
             make.width.equalTo(139)
-            make.height.equalTo(musicView.snp.width).multipliedBy(89.0 / 279.0)
+            make.height.equalTo(музыкаВид.snp.width).multipliedBy(89.0 / 279.0)
         }
-        let reelSwitch = ReelsSwitch(isOn: toggle, width: 70) { _ in
-            toggle.toggle()
-            UserDefaults.isMusicEnabled = toggle
-            switch toggle {
+        let reelSwitch = ПереключательКатушек(включено: переключатель, ширина: 70) { _ in
+            переключатель.toggle()
+            UserDefaults.isMusicEnabled = переключатель
+            switch переключатель {
             case true:
-                SoundService.shared.playMusic()
+                СервисЗвука.общий.воспроизвестиМузыку()
             case false:
-                SoundService.shared.stopMusic()
+                СервисЗвука.общий.остановитьМузыку()
             }
-            SoundService.shared.playSound(named: .click)
+            СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
         }
         hstack.addArrangedSubview(reelSwitch)
         
         return hstack
     }
     
-    private func soundView() -> UIView {
-        var toggle = UserDefaults.isSoundsEnabled
-        let soundView = UIView.imageView(.soundView)
+    private func звукВид() -> UIView {
+        var переключатель = UserDefaults.isSoundsEnabled
+        let звукВид = UIView.imageView(.soundView)
         let hstack = UIView.horizontalStackView(
             views: [
-                soundView
+                звукВид
             ]
         ).spacing(18)
-        soundView.snp.makeConstraints { make in
+        звукВид.snp.makeConstraints { make in
             make.width.equalTo(139)
-            make.height.equalTo(soundView.snp.width).multipliedBy(89.0 / 279.0)
+            make.height.equalTo(звукВид.snp.width).multipliedBy(89.0 / 279.0)
         }
-        let reelSwitch = ReelsSwitch(isOn: toggle, width: 70) { _ in
-            toggle.toggle()
-            UserDefaults.isSoundsEnabled = toggle
-            SoundService.shared.playSound(named: .click)
+        let reelSwitch = ПереключательКатушек(включено: переключатель, ширина: 70) { _ in
+            переключатель.toggle()
+            UserDefaults.isSoundsEnabled = переключатель
+            СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
         }
         hstack.addArrangedSubview(reelSwitch)
         

@@ -63,7 +63,7 @@ class SlotsView: UIView {
             return
         }
         
-        SoundService.shared.playSound(named: .spin)
+        СервисЗвука.общий.воспроизвестиЗвук(название: .вращение)
         
         selectedItems = (0..<visibleSize).map { _ in
             .init(image: nil, was: false)

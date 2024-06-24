@@ -1,169 +1,168 @@
 import SnapKit
 
-final class GameViewController: UIViewController {
-    // MARK: Properties
+final class КонтроллерИгры: UIViewController {
+    // MARK: Свойства
     
-    private var currentDeal: Double = min(200, UserDefaults.balance.double)
-    private var bonusMultiplier = 1
-    private var bonusImage: UIImage?
+    private var текущаяСтавка: Double = min(200, UserDefaults.balance.double)
+    private var множительБонуса = 1
+    private var изображениеБонуса: UIImage?
     
-    // MARK: UI elements
-    private lazy var balanceLabel = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .white)
-    private lazy var balanceView = UIView.imageView(.balanceView)
-    private lazy var popButton = UIView.button {
+    // MARK: UI элементы
+    private lazy var меткаБаланса = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .white)
+    private lazy var видБаланса = UIView.imageView(.balanceView)
+    private lazy var кнопкаНазад = UIView.button {
         self.pop()
-        SoundService.shared.playSound(named: .click)
+        СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
     }.setupImage(.popButton)
-    private lazy var settingsButton = UIView.button {
-        self.push(Settings())
-        SoundService.shared.playSound(named: .click)
+    private lazy var кнопкаНастроек = UIView.button {
+        self.push(Настройки())
+        СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
     }.setupImage(.settingsButton)
     
-    private lazy var bonusButton = UIView.button {
-        self.bonusButtonTapped()
+    private lazy var кнопкаБонуса = UIView.button {
+        self.нажатаКнопкаБонуса()
     }.setupImage(.bonus)
     
-    private func bonusButtonTapped() {
-        self.push(Bonus(completion: { model in
-            self.bonusImage = model.image
-            self.bonusMultiplier = model.multipliedBy
-            self.bonusButton.setupImage(model.image)
+    private func нажатаКнопкаБонуса() {
+        self.push(Бонус(завершение: { модель in
+            self.изображениеБонуса = модель.изображение
+            self.множительБонуса = модель.умноженоНа
+            self.кнопкаБонуса.setupImage(модель.изображение)
         }))
-        SoundService.shared.playSound(named: .click)
+        СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
     }
     
-    private lazy var dealView = DealView(
-        minValue: 10,
-        value: currentDeal,
-        step: 10
-    ) { [weak self] deal in
-        self?.currentDeal = deal
+    private lazy var видСтавки = СделкаView(
+        минимальноеЗначение: 10,
+        значение: текущаяСтавка,
+        шаг: 10
+    ) { [weak self] ставка in
+        self?.текущаяСтавка = ставка
     }
     
-    private lazy var spinButton = UIView.button { [weak self] in
+    private lazy var кнопкаВращения = UIView.button { [weak self] in
         guard let self = self else { return }
-        self.currentDeal = self.dealView.value
-        self.slotsView.spin { resultItem in
-            SoundService.shared.playSound(named: .win)
-            var multiplier = resultItem.multiplier
-            if resultItem.images.contains(where: { $0 == self.bonusImage }) {
-                multiplier *= self.bonusMultiplier
+        self.текущаяСтавка = self.видСтавки.значение
+        self.видСлотов.spin { результат in
+            СервисЗвука.общий.воспроизвестиЗвук(название: .выигрыш)
+            var множитель = результат.multiplier
+            if результат.images.contains(where: { $0 == self.изображениеБонуса }) {
+                множитель *= self.множительБонуса
             }
             
-            if multiplier == 0  {
-                if UserDefaults.balance.double > self.currentDeal {
-                    UserDefaults.balance -= Int(self.currentDeal)
+            if множитель == 0 {
+                if UserDefaults.balance.double > self.текущаяСтавка {
+                    UserDefaults.balance -= Int(self.текущаяСтавка)
                 } else {
-                    UserDefaults.balance = Int(self.dealView.minValue)
+                    UserDefaults.balance = Int(self.видСтавки.минимальноеЗначение)
                 }
-                print("<<< lose = \(self.currentDeal)")
-                let alertView = AlertView(money: -Int(self.currentDeal)) { _ in }
-                self.view.addSubview(alertView)
-                alertView.makeConstraints { make in
+                print("<<< проигрыш = \(self.текущаяСтавка)")
+                let оповещение = Оповещение(деньги: -Int(self.текущаяСтавка)) { _ in }
+                self.view.addSubview(оповещение)
+                оповещение.makeConstraints { make in
                     make.edges.equalToSuperview()
                 }
                 
             } else {
-                let winValue = Int(self.currentDeal) * multiplier
-                print("<<< win = \(winValue)")
-                UserDefaults.balance += winValue
+                let выигрыш = Int(self.текущаяСтавка) * множитель
+                print("<<< выигрыш = \(выигрыш)")
+                UserDefaults.balance += выигрыш
                 
-                
-                let alertView = AlertView(money: winValue) { _ in }
-                self.view.addSubview(alertView)
-                alertView.makeConstraints { make in
+                let оповещение = Оповещение(деньги: выигрыш) { _ in }
+                self.view.addSubview(оповещение)
+                оповещение.makeConstraints { make in
                     make.edges.equalToSuperview()
                 }
             }
             
-            self.balanceLabel.text = UserDefaults.balance.string
-            self.dealView.fixDeal()
+            self.меткаБаланса.text = UserDefaults.balance.string
+            self.видСтавки.зафиксироватьСделку()
             
-            if self.bonusImage != nil {
-                // Disable bonus after using spin
-                self.bonusButton.isHidden = true
-                self.bonusImage = nil
-                self.bonusMultiplier = 1
+            if self.изображениеБонуса != nil {
+                // Отключить бонус после использования
+                self.кнопкаБонуса.isHidden = true
+                self.изображениеБонуса = nil
+                self.множительБонуса = 1
             }
         }
     }.setupImage(.spin)
     
-    private lazy var slotsView = SlotsView()
+    private lazy var видСлотов = SlotsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        настроитьВид()
     }
     
-    private func setupView() {
+    private func настроитьВид() {
         view.image(.mainViewController)
-        view.addSubview(balanceView)
-        balanceView.snp.makeConstraints { make in
+        view.addSubview(видБаланса)
+        видБаланса.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.snp.topMargin).offset(15)
             make.width.equalToSuperview().dividedBy(3)
-            make.height.equalTo(balanceView.snp.width).multipliedBy(104.0 / 321.0)
+            make.height.equalTo(видБаланса.snp.width).multipliedBy(104.0 / 321.0)
         }
         
-        balanceView.addSubview(balanceLabel)
-        balanceLabel.snp.makeConstraints { make in
+        видБаланса.addSubview(меткаБаланса)
+        меткаБаланса.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview().offset(5)
         }
         
-        view.addSubview(popButton)
-        popButton.snp.makeConstraints { make in
+        view.addSubview(кнопкаНазад)
+        кнопкаНазад.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.trailing.equalToSuperview().inset(15)
             make.width.equalTo(64)
-            make.height.equalTo(popButton.snp.width).multipliedBy(129.15 / 129.36)
+            make.height.equalTo(кнопкаНазад.snp.width).multipliedBy(129.15 / 129.36)
         }
         
-        view.addSubview(settingsButton)
-        settingsButton.snp.makeConstraints { make in
+        view.addSubview(кнопкаНастроек)
+        кнопкаНастроек.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.leading.equalToSuperview().offset(15)
             make.width.equalTo(64)
-            make.height.equalTo(settingsButton.snp.width).multipliedBy(129.15 / 129.36)
+            make.height.equalTo(кнопкаНастроек.snp.width).multipliedBy(129.15 / 129.36)
         }
         
-        view.addSubview(slotsView)
-        slotsView.snp.makeConstraints { make in
+        view.addSubview(видСлотов)
+        видСлотов.snp.makeConstraints { make in
             make.centerY.equalToSuperview().multipliedBy(0.85)
             make.centerX.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(slotsView.snp.width)
+            make.height.equalTo(видСлотов.snp.width)
         }
         
-        let godImageView = UIView.imageView(.cresus1)
-        view.addSubview(godImageView)
-        godImageView.snp.makeConstraints { make in
+        let изображениеБога = UIView.imageView(.cresus1)
+        view.addSubview(изображениеБога)
+        изображениеБога.snp.makeConstraints { make in
             make.bottom.leading.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2.6)
-            make.height.equalTo(godImageView.snp.width).multipliedBy(882.0 / 344.0)
+            make.height.equalTo(изображениеБога.snp.width).multipliedBy(882.0 / 344.0)
         }
         
-        view.addSubview(dealView)
-        dealView.snp.makeConstraints { make in
-            make.top.equalTo(slotsView.snp.bottom).inset(-30)
+        view.addSubview(видСтавки)
+        видСтавки.snp.makeConstraints { make in
+            make.top.equalTo(видСлотов.snp.bottom).inset(-30)
             make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(dealView.snp.width).multipliedBy(215.0 / 725.0)
+            make.height.equalTo(видСтавки.snp.width).multipliedBy(215.0 / 725.0)
         }
         
-        view.addSubview(spinButton)
-        spinButton.snp.makeConstraints { make in
-            make.top.equalTo(dealView.snp.bottom).inset(-30)
+        view.addSubview(кнопкаВращения)
+        кнопкаВращения.snp.makeConstraints { make in
+            make.top.equalTo(видСтавки.snp.bottom).inset(-30)
             make.width.equalToSuperview().dividedBy(4)
-            make.height.equalTo(spinButton.snp.width).multipliedBy(173.0 / 219)
+            make.height.equalTo(кнопкаВращения.snp.width).multipliedBy(173.0 / 219)
             make.centerX.equalToSuperview()
         }
         
-        view.addSubview(bonusButton)
-        bonusButton.snp.makeConstraints { make in
+        view.addSubview(кнопкаБонуса)
+        кнопкаБонуса.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(4)
-            make.height.equalTo(bonusButton.snp.width).multipliedBy(88.0 / 263.0)
-            make.trailing.equalTo(slotsView).inset(20)
-            make.bottom.equalTo(slotsView.snp.top)
+            make.height.equalTo(кнопкаБонуса.snp.width).multipliedBy(88.0 / 263.0)
+            make.trailing.equalTo(видСлотов).inset(20)
+            make.bottom.equalTo(видСлотов.snp.top)
         }
     }
 }

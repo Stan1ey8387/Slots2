@@ -1,36 +1,36 @@
 import SnapKit
 
-struct BonusModel {
-    let image: UIImage
-    let multipliedBy: Int
+struct МодельБонуса {
+    let изображение: UIImage
+    let умноженоНа: Int
 }
 
-final class Bonus: UIViewController {
+final class Бонус: UIViewController {
     
-    private let completion: ((BonusModel) -> ())
+    private let завершение: ((МодельБонуса) -> ())
     
-    private lazy var balanceLabel = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .white)
-    private lazy var balanceView = UIView.imageView(.balanceView)
-    private lazy var popButton = UIView.button {
+    private lazy var меткаБаланса = UIView.boldLabel(UserDefaults.balance.string, fontSize: 12, textColor: .white)
+    private lazy var видБаланса = UIView.imageView(.balanceView)
+    private lazy var кнопкаНазад = UIView.button {
         self.pop()
-        SoundService.shared.playSound(named: .click)
+        СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
     }.setupImage(.popButton)
-    private lazy var settingsButton = UIView.button {
-        self.push(Settings())
-        SoundService.shared.playSound(named: .click)
+    private lazy var кнопкаНастроек = UIView.button {
+        self.push(Настройки())
+        СервисЗвука.общий.воспроизвестиЗвук(название: .клик)
     }.setupImage(.settingsButton)
-    private lazy var cresusImageView = UIView.imageView(.queen)
+    private lazy var изображениеКресуса = UIView.imageView(.queen)
     
-    private lazy var bonusView = UIView.imageView(.bonusView).isUserInteractionEnabled(true)
+    private lazy var видБонуса = UIView.imageView(.bonusView).isUserInteractionEnabled(true)
 
-    private lazy var scrollView: UIScrollView = {
+    private lazy var прокручиваемыйВид: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
-    private lazy var pageControl = PageView(
+    private lazy var страничныйКонтроль = PageView(
         count: 2,
         pageViewSettings: .init(
             selectedColor: .init(hex: 0xF3D980),
@@ -38,8 +38,8 @@ final class Bonus: UIViewController {
         )
     )
     
-    init(completion: @escaping ((BonusModel) -> ())) {
-        self.completion = completion
+    init(завершение: @escaping ((МодельБонуса) -> ())) {
+        self.завершение = завершение
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -49,148 +49,147 @@ final class Bonus: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        настроитьВид()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        balanceLabel.text = UserDefaults.balance.string
+        меткаБаланса.text = UserDefaults.balance.string
     }
     
-    private func bonusButton(_ image: UIImage, tap: @escaping (() -> ())) -> UIView {
-        let buton = UIView.button {
-            tap()
+    private func кнопкаБонуса(_ изображение: UIImage, нажатие: @escaping (() -> ())) -> UIView {
+        let кнопка = UIView.button {
+            нажатие()
             self.pop()
-        }.setupImage(image)
-        let stack = UIView.centerStackView(views: [buton])
-        buton.snp.makeConstraints { make in
+        }.setupImage(изображение)
+        let стек = UIView.centerStackView(views: [кнопка])
+        кнопка.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(2)
-            make.height.equalTo(buton.snp.width).multipliedBy(109.0 / 341.0)
-
+            make.height.equalTo(кнопка.snp.width).multipliedBy(109.0 / 341.0)
         }
-        return stack
+        return стек
     }
     
-    private func setupView() {
+    private func настроитьВид() {
         view.image(.mainViewController)
         
-        let verticalStackViews = [
+        let вертикальныеСтекВиды = [
             UIView.verticalStackView(
                 views: [
-                    bonusButton(.goldx10, tap: {
-                        self.completion(.init(image: .goldx10, multipliedBy: 10))
+                    кнопкаБонуса(.goldx10, нажатие: {
+                        self.завершение(.init(изображение: .goldx10, умноженоНа: 10))
                     }),
-                    bonusButton(.redx25, tap: {
-                        self.completion(.init(image: .redx25, multipliedBy: 25))
+                    кнопкаБонуса(.redx25, нажатие: {
+                        self.завершение(.init(изображение: .redx25, умноженоНа: 25))
                     }),
-                    bonusButton(.bluex50, tap: {
-                        self.completion(.init(image: .bluex50, multipliedBy: 50))
+                    кнопкаБонуса(.bluex50, нажатие: {
+                        self.завершение(.init(изображение: .bluex50, умноженоНа: 50))
                     })
                 ]
             ),
             .verticalStackView(
                 views: [
-                    bonusButton(.purplex10, tap: {
-                        self.completion(.init(image: .purplex10, multipliedBy: 10))
+                    кнопкаБонуса(.purplex10, нажатие: {
+                        self.завершение(.init(изображение: .purplex10, умноженоНа: 10))
                     }),
-                    bonusButton(.greenx25, tap: {
-                        self.completion(.init(image: .greenx25, multipliedBy: 25))
+                    кнопкаБонуса(.greenx25, нажатие: {
+                        self.завершение(.init(изображение: .greenx25, умноженоНа: 25))
                     }),
-                    bonusButton(.lightgreenx50, tap: {
-                        self.completion(.init(image: .lightgreenx50, multipliedBy: 50))
+                    кнопкаБонуса(.lightgreenx50, нажатие: {
+                        self.завершение(.init(изображение: .lightgreenx50, умноженоНа: 50))
                     })
                 ]
             ),
             .verticalStackView(
                 views: [
-                    bonusButton(.ringx10, tap: {
-                        self.completion(.init(image: .ringx10, multipliedBy: 10))
+                    кнопкаБонуса(.ringx10, нажатие: {
+                        self.завершение(.init(изображение: .ringx10, умноженоНа: 10))
                     }),
-                    bonusButton(.crownx25, tap: {
-                        self.completion(.init(image: .crownx25, multipliedBy: 25))
+                    кнопкаБонуса(.crownx25, нажатие: {
+                        self.завершение(.init(изображение: .crownx25, умноженоНа: 25))
                     }),
-                    bonusButton(.cupx50, tap: {
-                        self.completion(.init(image: .cupx50, multipliedBy: 50))
+                    кнопкаБонуса(.cupx50, нажатие: {
+                        self.завершение(.init(изображение: .cupx50, умноженоНа: 50))
                     })
                 ]
             )
         ]
         
-        view.addSubview(balanceView)
-        balanceView.snp.makeConstraints { make in
+        view.addSubview(видБаланса)
+        видБаланса.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.snp.topMargin).offset(15)
             make.width.equalToSuperview().dividedBy(3)
-            make.height.equalTo(balanceView.snp.width).multipliedBy(104.0 / 321.0)
+            make.height.equalTo(видБаланса.snp.width).multipliedBy(104.0 / 321.0)
         }
         
-        balanceView.addSubview(balanceLabel)
-        balanceLabel.snp.makeConstraints { make in
+        видБаланса.addSubview(меткаБаланса)
+        меткаБаланса.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview().offset(5)
         }
         
-        view.addSubview(popButton)
-        popButton.snp.makeConstraints { make in
+        view.addSubview(кнопкаНазад)
+        кнопкаНазад.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.trailing.equalToSuperview().inset(15)
             make.width.equalTo(64)
-            make.height.equalTo(popButton.snp.width).multipliedBy(129.15 / 129.36)
+            make.height.equalTo(кнопкаНазад.snp.width).multipliedBy(129.15 / 129.36)
         }
         
-        view.addSubview(settingsButton)
-        settingsButton.snp.makeConstraints { make in
+        view.addSubview(кнопкаНастроек)
+        кнопкаНастроек.snp.makeConstraints { make in
             make.top.equalTo(view.snp.topMargin).offset(10)
             make.leading.equalToSuperview().offset(15)
             make.width.equalTo(64)
-            make.height.equalTo(settingsButton.snp.width).multipliedBy(129.15 / 129.36)
+            make.height.equalTo(кнопкаНастроек.snp.width).multipliedBy(129.15 / 129.36)
         }
         
-        view.addSubview(bonusView)
-        bonusView.snp.makeConstraints { make in
+        view.addSubview(видБонуса)
+        видБонуса.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-50)
             make.width.equalToSuperview().dividedBy(1.3)
-            make.height.equalTo(bonusView.snp.width).multipliedBy(616.0 / 663.0)
+            make.height.equalTo(видБонуса.snp.width).multipliedBy(616.0 / 663.0)
         }
         
-        bonusView.addSubview(scrollView)
-        scrollView.snp.makeConstraints { make in
+        видБонуса.addSubview(прокручиваемыйВид)
+        прокручиваемыйВид.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalToSuperview()
             make.bottom.equalToSuperview().inset(20)
         }
         
-        bonusView.addSubview(pageControl)
-        pageControl.snp.makeConstraints { make in
+        видБонуса.addSubview(страничныйКонтроль)
+        страничныйКонтроль.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
         }
         
-        view.addSubview(cresusImageView)
-        cresusImageView.snp.makeConstraints { make in
+        view.addSubview(изображениеКресуса)
+        изображениеКресуса.snp.makeConstraints { make in
             make.trailing.bottom.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2.5)
             make.height.equalToSuperview().dividedBy(1.7)
         }
         
-        let horizontalItemsView = UIView.horizontalStackView(views: verticalStackViews).distribution(.fillEqually).alignment(.center)
-        scrollView.addSubview(horizontalItemsView)
-        horizontalItemsView.snp.makeConstraints { make in
+        let горизонтальныйЭлементыВид = UIView.horizontalStackView(views: вертикальныеСтекВиды).distribution(.fillEqually).alignment(.center)
+        прокручиваемыйВид.addSubview(горизонтальныйЭлементыВид)
+        горизонтальныйЭлементыВид.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(verticalStackViews.count)
+            make.width.equalToSuperview().multipliedBy(вертикальныеСтекВиды.count)
         }
-        verticalStackViews.enumerated().forEach { index, view in
+        вертикальныеСтекВиды.enumerated().forEach { index, view in
             view.spacing(10)
         }
     }
 }
 
-extension Bonus: UIScrollViewDelegate {
+extension Бонус: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentPage = (scrollView.contentOffset.x / view.bounds.width)
-        let currentIndex = Int(currentPage.rounded(.toNearestOrEven))
-        pageControl.currentIndex = currentIndex
+        let текущаяСтраница = (scrollView.contentOffset.x / view.bounds.width)
+        let текущийИндекс = Int(текущаяСтраница.rounded(.toNearestOrEven))
+        страничныйКонтроль.currentIndex = текущийИндекс
     }
 }

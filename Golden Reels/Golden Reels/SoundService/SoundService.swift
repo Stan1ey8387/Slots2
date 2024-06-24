@@ -1,72 +1,72 @@
 import AVFoundation
 
-enum Music: String {
-    case background = "background music"
+enum Музыка: String {
+    case фон = "background music"
 }
 
-enum Sounds: String {
-    case click = "click sound"
-    case spin = "spin slot sound"
-    case win = "win sound"
+enum Звуки: String {
+    case клик = "click sound"
+    case вращение = "spin slot sound"
+    case выигрыш = "win sound"
 }
 
-final class SoundService {
+final class СервисЗвука {
     
-    static let shared = SoundService()
+    static let общий = СервисЗвука()
     
-    var isMusicEnabled: Bool {
+    var включенаМузыка: Bool {
         return UserDefaults.isMusicEnabled
     }
     
-    var isSoundsEnabled: Bool {
+    var включеныЗвуки: Bool {
         return UserDefaults.isSoundsEnabled
     }
     
-    private var musicPlayer: AVAudioPlayer?
-    private var soundPlayer: AVAudioPlayer?
+    private var проигрывательМузыки: AVAudioPlayer?
+    private var проигрывательЗвуков: AVAudioPlayer?
     
     private init() { }
     
-    // Music
+    // Музыка
     
-    func playMusic() {
-        guard isMusicEnabled else { return }
+    func воспроизвестиМузыку() {
+        guard включенаМузыка else { return }
         
-        if let soundURL = Bundle.main.url(forResource: Music.background.rawValue, withExtension: "mp3") {
+        if let urlЗвука = Bundle.main.url(forResource: Музыка.фон.rawValue, withExtension: "mp3") {
             do {
-                let audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                self.musicPlayer = nil
-                self.musicPlayer = audioPlayer
-                audioPlayer.numberOfLoops = -1
-                audioPlayer.play()
+                let аудиоПроигрыватель = try AVAudioPlayer(contentsOf: urlЗвука)
+                self.проигрывательМузыки = nil
+                self.проигрывательМузыки = аудиоПроигрыватель
+                аудиоПроигрыватель.numberOfLoops = -1
+                аудиоПроигрыватель.play()
             } catch {
-                print("Failed to play sound: \(error)")
+                print("Не удалось воспроизвести звук: \(error)")
             }
         } else {
-            print("Sound file not found: \(Music.background.rawValue).mp3")
+            print("Файл звука не найден: \(Музыка.фон.rawValue).mp3")
         }
     }
     
-    func stopMusic() {
-        musicPlayer?.stop()
-        musicPlayer = nil
+    func остановитьМузыку() {
+        проигрывательМузыки?.stop()
+        проигрывательМузыки = nil
     }
     
-    // Sounds
+    // Звуки
     
-    func playSound(named soundName: Sounds) {
-        guard isSoundsEnabled else { return }
+    func воспроизвестиЗвук(название звука: Звуки) {
+        guard включеныЗвуки else { return }
         
-        if let soundURL = Bundle.main.url(forResource: soundName.rawValue, withExtension: "mp3") {
+        if let urlЗвука = Bundle.main.url(forResource: звука.rawValue, withExtension: "mp3") {
             do {
-                let audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                self.soundPlayer = audioPlayer
-                audioPlayer.play()
+                let аудиоПроигрыватель = try AVAudioPlayer(contentsOf: urlЗвука)
+                self.проигрывательЗвуков = аудиоПроигрыватель
+                аудиоПроигрыватель.play()
             } catch {
-                print("Failed to play sound: \(error)")
+                print("Не удалось воспроизвести звук: \(error)")
             }
         } else {
-            print("Sound file not found: \(soundName.rawValue).mp3")
+            print("Файл звука не найден: \(звука.rawValue).mp3")
         }
     }
 }
