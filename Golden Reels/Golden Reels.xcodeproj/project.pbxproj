@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C6557602C2A19C800029EF9 /* win sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C65575C2C2A19C800029EF9 /* win sound.mp3 */; };
+		0C6557612C2A19C800029EF9 /* spin slot sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C65575D2C2A19C800029EF9 /* spin slot sound.mp3 */; };
+		0C6557622C2A19C800029EF9 /* background music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C65575E2C2A19C800029EF9 /* background music.mp3 */; };
+		0C6557632C2A19C800029EF9 /* click sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C65575F2C2A19C800029EF9 /* click sound.mp3 */; };
 		362F5A622C26F3CA00BF42AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362F5A612C26F3CA00BF42AE /* AppDelegate.swift */; };
 		362F5A642C26F3CA00BF42AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362F5A632C26F3CA00BF42AE /* SceneDelegate.swift */; };
 		362F5A6B2C26F3CC00BF42AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 362F5A6A2C26F3CC00BF42AE /* Assets.xcassets */; };
@@ -62,16 +66,16 @@
 		3692BB022C28216A0088DE42 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAF02C28216A0088DE42 /* Game.swift */; };
 		3692BB032C28216A0088DE42 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAF12C28216A0088DE42 /* Main.swift */; };
 		3692BB042C28216A0088DE42 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAF22C28216A0088DE42 /* Settings.swift */; };
-		3692BB052C28216A0088DE42 /* background music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3692BAF42C28216A0088DE42 /* background music.mp3 */; };
-		3692BB062C28216A0088DE42 /* click sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3692BAF52C28216A0088DE42 /* click sound.mp3 */; };
-		3692BB072C28216A0088DE42 /* spin slot sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3692BAF62C28216A0088DE42 /* spin slot sound.mp3 */; };
-		3692BB082C28216A0088DE42 /* win sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3692BAF72C28216A0088DE42 /* win sound.mp3 */; };
 		3692BB092C28216A0088DE42 /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BAF92C28216A0088DE42 /* SoundService.swift */; };
 		3692BB0B2C28BFF10088DE42 /* ReelsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3692BB0A2C28BFF10088DE42 /* ReelsSwitch.swift */; };
 		BBEC3DA6A5D983C60F67C00F /* Pods_Golden_Reels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819AD89C6DEB993D52D25736 /* Pods_Golden_Reels.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C65575C2C2A19C800029EF9 /* win sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "win sound.mp3"; sourceTree = "<group>"; };
+		0C65575D2C2A19C800029EF9 /* spin slot sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "spin slot sound.mp3"; sourceTree = "<group>"; };
+		0C65575E2C2A19C800029EF9 /* background music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "background music.mp3"; sourceTree = "<group>"; };
+		0C65575F2C2A19C800029EF9 /* click sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "click sound.mp3"; sourceTree = "<group>"; };
 		2BA93F3C01BB76F6D9024774 /* Pods-Golden Reels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golden Reels.debug.xcconfig"; path = "Target Support Files/Pods-Golden Reels/Pods-Golden Reels.debug.xcconfig"; sourceTree = "<group>"; };
 		362F5A5E2C26F3CA00BF42AE /* Golden Reels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Golden Reels.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		362F5A612C26F3CA00BF42AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,10 +134,6 @@
 		3692BAF02C28216A0088DE42 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3692BAF12C28216A0088DE42 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		3692BAF22C28216A0088DE42 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		3692BAF42C28216A0088DE42 /* background music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "background music.mp3"; sourceTree = "<group>"; };
-		3692BAF52C28216A0088DE42 /* click sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "click sound.mp3"; sourceTree = "<group>"; };
-		3692BAF62C28216A0088DE42 /* spin slot sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "spin slot sound.mp3"; sourceTree = "<group>"; };
-		3692BAF72C28216A0088DE42 /* win sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "win sound.mp3"; sourceTree = "<group>"; };
 		3692BAF92C28216A0088DE42 /* SoundService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		3692BB0A2C28BFF10088DE42 /* ReelsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelsSwitch.swift; sourceTree = "<group>"; };
 		819AD89C6DEB993D52D25736 /* Pods_Golden_Reels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golden_Reels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,10 +334,10 @@
 		3692BAF82C28216A0088DE42 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				3692BAF42C28216A0088DE42 /* background music.mp3 */,
-				3692BAF52C28216A0088DE42 /* click sound.mp3 */,
-				3692BAF62C28216A0088DE42 /* spin slot sound.mp3 */,
-				3692BAF72C28216A0088DE42 /* win sound.mp3 */,
+				0C65575E2C2A19C800029EF9 /* background music.mp3 */,
+				0C65575F2C2A19C800029EF9 /* click sound.mp3 */,
+				0C65575D2C2A19C800029EF9 /* spin slot sound.mp3 */,
+				0C65575C2C2A19C800029EF9 /* win sound.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -428,12 +428,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3692BB082C28216A0088DE42 /* win sound.mp3 in Resources */,
-				3692BB062C28216A0088DE42 /* click sound.mp3 in Resources */,
-				3692BB052C28216A0088DE42 /* background music.mp3 in Resources */,
+				0C6557602C2A19C800029EF9 /* win sound.mp3 in Resources */,
 				362F5A6B2C26F3CC00BF42AE /* Assets.xcassets in Resources */,
+				0C6557632C2A19C800029EF9 /* click sound.mp3 in Resources */,
+				0C6557612C2A19C800029EF9 /* spin slot sound.mp3 in Resources */,
+				0C6557622C2A19C800029EF9 /* background music.mp3 in Resources */,
 				362F5A6E2C26F3CC00BF42AE /* Base in Resources */,
-				3692BB072C28216A0088DE42 /* spin slot sound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
